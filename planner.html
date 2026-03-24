@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Study Planner</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+        <header>
+  <h1>StudySmart</h1>
+  <!-- <nav>
+    <a href="index.html">Home</a>
+    <a href="planner.html">Planner</a>
+    <a href="subjects.html">Subjects</a>
+    <a href="tips.html">AI Tips</a>
+    <a href="team.html">Team</a>
+  </nav> -->
+</header>
+
+<br><br>
+
+    <select id="subject">
+  <option value="math">Math</option>
+  <option value="english">English</option>
+  <option value="science">Science</option>
+</select>
+
+<input type="number" id="hours" placeholder="Study hours">
+
+<input type="date" id="examDate">
+
+<button onclick="generatePlan()">Generate Plan</button>
+
+<div id="loading" class="loading" style="display:none;">
+  Generating...
+</div>
+
+<div id="output"></div>
+
+
+<script src="script.js"></script>
+    
+</body>
+
+
+</html>

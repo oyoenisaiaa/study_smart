@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>StudySmart</title>
+        <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    
+    <body>
+        <!-- ALERT -->
+        <div id="alertBox" class="alert hidden">
+            <div class="alert-content">
+                <span class="alert-icon">🔔</span>
+                <span class="alert-message">Reminder to Take a Break! Time for a quick stretch!</span>
+                <!-- <span class="alert-message">Time for a 5-minute breather! Step away from the screen!</span>
+                <span class="alert-message">Pause & Refresh. Your brain deserves a break.</span>
+                <span class="alert-message">Reminder to Take a Break! Stand up, grab some water, and take a quick walk.</span>
+                <span class="alert-message">Time for a brain break! Look away from your screen for 5 minutes.</span>
+                <span class="alert-message">Brain capacity 99% full. Pause to relax and recharge.</span> -->
+            </div>
+            <button class="alert-close" onclick="closeAlert()">×</button>
+        </div>
+
+        <!-- NAVBAR -->
+        <header class="navbar">
+            
+            <!-- Logo -->
+            <div class="logo">
+                <img src="https://www.w3schools.com/images/w3schools_logo_436_2.png" alt="StudySmart Logo">
+            </div>
+            
+            <!-- NavBar -->
+            <nav class="nav-links">
+                <ul>
+                    <li><a class="active" href="index.html">Home</a></li>
+                    <li><a href="planner.html">Planner</a></li>
+                    <li><a href="subjects.html">Subjects</a></li>
+                    <li><a href="#ai-tips">AI Study Tips</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Sign up/Login buttons -->
+            <div class="auth-buttons">
+                <button onclick="openModal('signup')">Sign Up</button>
+                <button onclick="openModal('login')">Log In</button>
+            </div>
+        </div>
+    </header> <!-- End of NavBar -->
+    
+    
+    <!-- MODAL -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+
+            <!-- Modal titles -->
+            <h2 class="welcome-title">Welcome to StudySmart</h2>
+            <h3 id="modal-title"></h3>
+            <p id="modal-subtitle"></p>
+
+            <!-- Modal forms -->
+            <form class="modal-form">
+                <label>Email Address<span>*</span></label>
+                <div class="input-group">
+                    <span class="icon">📧</span>
+                    <input type="email" placeholder="Enter your email address" required>
+                </div>
+                
+                <label>Password<span>*</span></label>
+                <div class="input-group">
+                    <span class="icon">🔒</span>
+                    <input type="password" placeholder="Enter your password" required>
+                </div>
+                
+                <button type="submit">Submit</button>
+
+                <!-- Redirection between modals -->
+                <p id="switchText" class="switch-text"></p>
+
+            </form>
+        </div>
+    </div> <!-- End of Modal -->
+    
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-text">
+            <h1>AI Study Planner</h1>
+            <p>Stop cramming. Study smarter and master your exams with personalized study plans and tips.</p>
+            <button class="cta-btn">Generate My Study Plan</button>
+        </div>
+        
+        <div class="hero-image">
+            <img src="https://www.w3schools.com/images/w3schools_logo_436_2.png" alt="StudyAI Logo">
+        </div>
+    </section>
+    
+    <!-- FEATURE CARDS -->
+    <section class="features">
+        <p class="card-title">Everything you need to stay on track</p>
+
+        <div class="card-container">
+            <div class="card" onclick="goToPage('planner.html')">
+            <h3>Plan smart</h3>
+            <p>Create study schedules tailored to your goals</p>
+        </div>
+        
+        <div class="card" onclick="goToPage('subjects.html')">
+            <h3>Learn</h3>
+            <p>Access subject resources to aid your studies</p>
+        </div>
+        
+        <div class="card" onclick="scrollToSection('ai-tips')">
+            <h3>AI Tips</h3>
+            <p>Get smart and personalized recommendations to improve your learning</p>
+        </div>
+        
+        <div class="card" onclick="openModal('login')">
+            <h3>Track Progress</h3>
+            <!-- <p>Login to track your study progress</p> -->
+            <p>Stay consistent with visual progress tracking</p>
+        </div>
+
+        </div>
+    </section>
+
+
+  <!-- How to create your study plan in 3 steps -->
+<section id="subjects" class="three-steps">
+  <div class="container">
+    <h2>How to create your study plan in 3 steps</h2>
+
+    <div class="step-grid">
+      <div class="step">
+        <div class="badge">1</div>
+        <h3>Select your subjects</h3>
+        <p>Input your courses/subjects and study goals.</p>
+      </div>
+
+      <div class="step">
+        <div class="badge">2</div>
+        <h3>Add study time</h3>
+        <p>Choose hours and days that are convenient for you and set goals you hope to achieve.</p>
+      </div>
+
+      <div class="step">
+        <div class="badge">3</div>
+        <h3>Generate your plan</h3>
+        <p>Receive a personalized AI study plan in seconds.</p>
+        <!-- <p>AI creates a personalized schedule based on your requirements.</p> -->
+      </div>
+    </div>
+  </div>
+</section>
+
+
+    
+    <!-- AI TIPS SECTION -->
+    <section id="ai-tips" class="ai-tips">
+        <div class="container">
+            <h2>AI Tips</h2>
+            <h4>Powered by SmartStudy</h4>
+            <p>SmartStudy adapts to your pace, helping you study more efficiently and avoid burnout. 
+                You can increase your chances of passing your exams by 60% while putting in the optimal effort required.</p>
+            
+            <div class="tips-controls">
+                <button id="generateTipsBtn" class="cta-btn">Generate Tips</button>
+                <span id="tipsSuccess" class="tips-success hidden">✨ AI tips generated successfully!</span>
+            </div>
+            
+            <div class="tips-output-wrapper hidden" id="tipsWrapper">
+                <textarea id="tipsOutput" class="tips-output" readonly></textarea>
+                <!-- Copy Icon -->
+                <!-- <span id="copyTipsBtn" class="copy-icon">📋</span> -->
+                <span id="copyTipsBtn" style="font-size:20px" class="fa copy-icon">&#xf0c5;</span>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- New Testimonials -->
+    <section id="testimonials" class="testimonials">
+  <div class="container">
+    <h2>What Our Users Say</h2>
+    <h4>Trusted by students and educators</h4>
+
+    <div class="testimonials-grid">
+      <article class="testimonial">
+          <div class="stars">★★★★★</div>
+          <p class="quote">"I recommend StudySmart to my Form 3 class every term. The clear revision rhythm helps learners balance core subjects ahead of WASSCE without burning out."</p>
+          <div class="person">
+            <div class="avatar">
+              <!-- African man, Nigeria (Emmanuel Ikwuegbu, Unsplash) -->
+              <img src="https://images.unsplash.com/photo-1622295023876-0cdf583c41f6?w=128&h=128&fit=crop&crop=faces&q=80" width="48" height="48" alt="Portrait of Kofi Owusu-Ansah" loading="lazy">
+            </div>
+            <div><strong>Kofi Owusu-Ansah</strong><small>Mathematics teacher, senior high school · Accra, Ghana</small></div>
+          </div>
+        </article>
+        <article class="testimonial">
+          <div class="stars">★★★★★</div>
+          <p class="quote">"At our faculty, we point undergraduates to tools that build discipline. StudySmart’s structured tips mirror what we teach about time management and deep work."</p>
+          <div class="person">
+            <div class="avatar">
+              <!-- Black woman (Jadon Johnson, Unsplash) -->
+              <img src="https://images.unsplash.com/photo-1769636930016-5d9f0ca653aa?w=128&h=128&fit=crop&crop=faces&q=80" width="48" height="48" alt="Portrait of Dr. Amaka Nwosu" loading="lazy">
+            </div>
+            <div><strong>Dr. Amaka Nwosu</strong><small>Senior lecturer, faculty of education · Nigeria</small></div>
+          </div>
+        </article>
+        <article class="testimonial">
+          <div class="stars">★★★★★</div>
+          <p class="quote">"Many of our trainees left school early. StudySmart gives them bite-sized plans between workshop days—dignified support that fits informal learning."</p>
+          <div class="person">
+            <div class="avatar">
+              <!-- Black woman professional (Mo Darbz, Unsplash) -->
+              <img src="https://images.unsplash.com/photo-1636144896336-b056be4a8dfe?w=128&h=128&fit=crop&crop=faces&q=80" width="48" height="48" alt="Portrait of Fatima Abdul-Razak" loading="lazy">
+            </div>
+            <div><strong>Fatima Abdul-Razak</strong><small>Vocational skills coordinator · community training hub, Kumasi</small></div>
+          </div>
+        </article>
+        <article class="testimonial">
+          <div class="stars">★★★★★</div>
+          <p class="quote">"I’m in my second year at UNILAG. StudySmart broke my reading list into daily chunks—my GPA went up and I still have time for debate society."</p>
+          <div class="person">
+            <div class="avatar">
+              <!-- Black woman graduate / student (Nqobile Vundla, Unsplash) -->
+              <img src="https://images.unsplash.com/photo-1594750852491-e09aa1d75c78?w=128&h=128&fit=crop&crop=faces&q=80" width="48" height="48" alt="Portrait of Zainab Ibrahim" loading="lazy">
+            </div>
+            <div><strong>Zainab Ibrahim</strong><small>Undergraduate student · University of Lagos, Nigeria</small></div>
+          </div>
+        </article>
+    </div>
+  </div>
+</section>
+
+
+  <section id="faq" class="faq">
+  <div class="container">
+    <h2>Frequently Asked Questions</h2>
+    <h4>Everything you need to know</h4>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        What is SmartStudy?
+        <span>+</span>
+      </button>
+      <div class="faq-answer">
+        SmartStudy is an AI-powered tool that helps you study smarter and stay consistent.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        How do I use the tips?
+        <span>+</span>
+      </button>
+      <div class="faq-answer">
+        Generate tips and apply them during your study sessions for best results.
+      </div>
+    </div>
+  </div>
+</section>
+
+    
+    <!-- CONTACT US -->
+    <section id="contact" class="section">
+        <h2>Contact Us</h2>
+        <p>We’d love to hear from you!</p>
+        
+        <form onsubmit="submitForm(event)" class="contact-form">
+            <input type="text" placeholder="Full Name" required>
+            <input type="email" placeholder="Email" required>
+            <textarea placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+            <p id="formMessage" class="success-msg"></p> <!-- JS --> 
+        </form>
+    </section>
+
+  <!-- CTA Strip -->
+<section class="cta-strip">
+  <div class="container">
+    <h2>Ready to take control of your studies?</h2>
+    <button class="btn" data-link="#ai-tips">Start planning now</button>
+  </div>
+</section>
+
+<footer class="footer-main">
+  <div class="container">
+    <div class="footer-grid">
+
+        <div class="footer-col">
+        <h3>Product</h3>
+        <a href="subjects.html">Subjects</a>
+        <a href="#ai-tips">AI Tips</a>
+        <a href="planner.html">Study Planner</a>
+      </div>
+      
+      <div class="footer-col">
+        <h3>Support</h3>
+        <a href="#contact">Contact us</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#faq">FAQs</a>
+      </div>
+
+      <div class="footer-col">
+        <h3>Company</h3>
+        <a href="#home">About</a>
+        <a href="team.html">Team</a>
+        <a href="#contact">Privacy Policy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 StudySmart. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+
+    
+    <script src="script.js"></script>
+
+</body>
+</html>
