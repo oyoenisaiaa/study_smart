@@ -3,36 +3,39 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>StudySmart</title>
+        <title>SmartStudy</title>
         <link rel="stylesheet" href="style.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     
     <body>
         <!-- ALERT -->
-        <div id="alertBox" class="alert hidden">
+        <div id="alertBox" class="alert">
             <div class="alert-content">
                 <span class="alert-icon">🔔</span>
-                <span class="alert-message">Reminder to Take a Break! Time for a quick stretch!</span>
-                <!-- <span class="alert-message">Time for a 5-minute breather! Step away from the screen!</span>
-                <span class="alert-message">Pause & Refresh. Your brain deserves a break.</span>
-                <span class="alert-message">Reminder to Take a Break! Stand up, grab some water, and take a quick walk.</span>
-                <span class="alert-message">Time for a brain break! Look away from your screen for 5 minutes.</span>
-                <span class="alert-message">Brain capacity 99% full. Pause to relax and recharge.</span> -->
+                <span class="alert-message">Reminder to Take a Break! Time for a quick stretch!</span> 
             </div>
-            <button class="alert-close" onclick="closeAlert()">×</button>
+            
+            <div class="alert-close-wrapper">
+                <button onclick="closeAlert()">×</button>
+            </div>
         </div>
+
 
         <!-- NAVBAR -->
         <header class="navbar">
             
             <!-- Logo -->
+            <!-- <div class="logo">
+                <img src="https://www.w3schools.com/images/w3schools_logo_436_2.png" alt="SmartStudy">
+            </div> -->
+
             <div class="logo">
-                <img src="https://www.w3schools.com/images/w3schools_logo_436_2.png" alt="StudySmart Logo">
+                <span class="logo-placeholder">S</span>
             </div>
             
             <!-- NavBar -->
-            <nav class="nav-links">
+            <nav class="nav-links" id="navLinks">
                 <ul>
                     <li><a class="active" href="index.html">Home</a></li>
                     <li><a href="planner.html">Planner</a></li>
@@ -45,10 +48,13 @@
             <!-- Sign up/Login buttons -->
             <div class="auth-buttons">
                 <button onclick="openModal('signup')">Sign Up</button>
-                <button onclick="openModal('login')">Log In</button>
+                <button class="log-in-color" onclick="openModal('login')">Log In</button>
             </div>
-        </div>
-    </header> <!-- End of NavBar -->
+
+            <!-- Hamburger for mobile-->
+             <div class="hamburger" onclick="toggleMenu()">☰</div>
+            
+            </header> <!-- End of NavBar -->
     
     
     <!-- MODAL -->
@@ -57,12 +63,12 @@
             <span class="close" onclick="closeModal()">&times;</span>
 
             <!-- Modal titles -->
-            <h2 class="welcome-title">Welcome to StudySmart</h2>
+            <h2 class="welcome-title">Welcome to SmartStudy</h2>
             <h3 id="modal-title"></h3>
             <p id="modal-subtitle"></p>
 
             <!-- Modal forms -->
-            <form class="modal-form">
+            <form class="modal-form" onsubmit="handleAuth(event)">
                 <label>Email Address<span>*</span></label>
                 <div class="input-group">
                     <span class="icon">📧</span>
@@ -85,19 +91,22 @@
     </div> <!-- End of Modal -->
     
     <!-- HERO -->
-    <section class="hero">
-        <div class="hero-text">
-            <h1>AI Study Planner</h1>
-            <p>Stop cramming. Study smarter and master your exams with personalized study plans and tips.</p>
-            <button class="cta-btn">Generate My Study Plan</button>
+    <section class="hero-section">
+        <div class="hero">
+            <div class="hero-text">
+                <h1>AI Study Planner</h1>
+                <p>Stop cramming. Study smarter and master your exams with personalized study plans and tips.</p>
+                <button class="cta-btn" onclick="window.location.href='planner.html'">Generate My Study Plan</button>
+            <!-- <a href="planner.html" class="cta-btn">Generate My Study Plan</a> -->
+
         </div>
         
         <div class="hero-image">
-            <img src="https://www.w3schools.com/images/w3schools_logo_436_2.png" alt="StudyAI Logo">
+            <img src="/assets/hero-img.png" alt="Hero Image">
         </div>
-    </section>
+    </div>
     
-    <!-- FEATURE CARDS -->
+     <!-- FEATURE CARDS -->
     <section class="features">
         <p class="card-title">Everything you need to stay on track</p>
 
@@ -122,13 +131,13 @@
             <!-- <p>Login to track your study progress</p> -->
             <p>Stay consistent with visual progress tracking</p>
         </div>
-
-        </div>
-    </section>
+    </div>
+</section>
+</section>
 
 
   <!-- How to create your study plan in 3 steps -->
-<section id="subjects" class="three-steps">
+<section id="subjects" class="section-offset three-steps">
   <div class="container">
     <h2>How to create your study plan in 3 steps</h2>
 
@@ -158,7 +167,7 @@
 
     
     <!-- AI TIPS SECTION -->
-    <section id="ai-tips" class="ai-tips">
+    <section id="ai-tips" class="section-offset ai-tips">
         <div class="container">
             <h2>AI Tips</h2>
             <h4>Powered by SmartStudy</h4>
@@ -181,8 +190,8 @@
 
 
 
-    <!-- New Testimonials -->
-    <section id="testimonials" class="testimonials">
+    <!-- Testimonials -->
+    <section id="testimonials" class="section-offset testimonials">
   <div class="container">
     <h2>What Our Users Say</h2>
     <h4>Trusted by students and educators</h4>
@@ -190,7 +199,7 @@
     <div class="testimonials-grid">
       <article class="testimonial">
           <div class="stars">★★★★★</div>
-          <p class="quote">"I recommend StudySmart to my Form 3 class every term. The clear revision rhythm helps learners balance core subjects ahead of WASSCE without burning out."</p>
+          <p class="quote">"I recommend SmartStudy to my Form 3 class every term. The clear revision rhythm helps learners balance core subjects ahead of WASSCE without burning out."</p>
           <div class="person">
             <div class="avatar">
               <!-- African man, Nigeria (Emmanuel Ikwuegbu, Unsplash) -->
@@ -201,7 +210,7 @@
         </article>
         <article class="testimonial">
           <div class="stars">★★★★★</div>
-          <p class="quote">"At our faculty, we point undergraduates to tools that build discipline. StudySmart’s structured tips mirror what we teach about time management and deep work."</p>
+          <p class="quote">"At our faculty, we point undergraduates to tools that build discipline. SmartStudy’s structured tips mirror what we teach about time management and deep work."</p>
           <div class="person">
             <div class="avatar">
               <!-- Black woman (Jadon Johnson, Unsplash) -->
@@ -212,7 +221,7 @@
         </article>
         <article class="testimonial">
           <div class="stars">★★★★★</div>
-          <p class="quote">"Many of our trainees left school early. StudySmart gives them bite-sized plans between workshop days—dignified support that fits informal learning."</p>
+          <p class="quote">"Many of our trainees left school early. SmartStudy gives them bite-sized plans between workshop days—dignified support that fits informal learning."</p>
           <div class="person">
             <div class="avatar">
               <!-- Black woman professional (Mo Darbz, Unsplash) -->
@@ -223,7 +232,7 @@
         </article>
         <article class="testimonial">
           <div class="stars">★★★★★</div>
-          <p class="quote">"I’m in my second year at UNILAG. StudySmart broke my reading list into daily chunks—my GPA went up and I still have time for debate society."</p>
+          <p class="quote">"I’m in my second year at UNILAG. SmartStudy broke my reading list into daily chunks—my GPA went up and I still have time for debate society."</p>
           <div class="person">
             <div class="avatar">
               <!-- Black woman graduate / student (Nqobile Vundla, Unsplash) -->
@@ -237,36 +246,247 @@
 </section>
 
 
-  <section id="faq" class="faq">
-  <div class="container">
+<!-- FAQs - 2 columns no categorization-->
+  <section id="faq" class="section-offset faq">
     <h2>Frequently Asked Questions</h2>
-    <h4>Everything you need to know</h4>
 
-    <div class="faq-item">
-      <button class="faq-question">
-        What is SmartStudy?
-        <span>+</span>
-      </button>
+    <br><br>
+    <!-- <h4>Everything you need to know</h4> -->
+
+    <div class="faq-container">
+        <div class="faq-item">
+      <button class="faq-question">What is SmartStudy?<span>+</span></button>
       <div class="faq-answer">
-        SmartStudy is an AI-powered tool that helps you study smarter and stay consistent.
+        SmartStudy is an AI-powered study assistant designed to help you learn more efficiently, stay consistent, and avoid burnout. 
+        It provides smart tips, structured guidance, and tools to improve your study habits.
       </div>
     </div>
 
     <div class="faq-item">
-      <button class="faq-question">
-        How do I use the tips?
-        <span>+</span>
-      </button>
+      <button class="faq-question">How does SmartStudy help me study better?<span>+</span></button>
+      <div class="faq-answer">
+        SmartStudy analyzes effective learning techniques and delivers actionable tips like 
+        time management, active recall, and spaced repetition. 
+        It helps you focus on what matters most so you can study smarter, not harder.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">How do I use the tips?<span>+</span></button>
       <div class="faq-answer">
         Generate tips and apply them during your study sessions for best results.
       </div>
     </div>
+
+    <div class="faq-item">
+      <button class="faq-question">Are the AI tips personalized?<span>+</span></button>
+      <div class="faq-answer">
+        Currently, the tips are based on proven study strategies that work for most learners. 
+        As the platform evolves, personalization features will be introduced to tailor recommendations to your study style and goals.
+      </div>
+    </div>
+
+     <div class="faq-item">
+      <button class="faq-question">How often should I use the AI tips feature?<span>+</span></button>
+      <div class="faq-answer">
+        You can use it as often as you need! Many users generate tips daily before study sessions to stay focused and motivated.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">Do I need to create an account to use SmartStudy?<span>+</span></button>
+      <div class="faq-answer">
+        Some features may require you to log in so your progress and preferences can be saved. 
+        This helps create a more consistent and effective study experience.
+      </div>
+    </div>
+
+
+    <div class="faq-item">
+      <button class="faq-question">Is SmartStudy suitable for all subjects?<span>+</span></button>
+      <div class="faq-answer">
+        Yes! SmartStudy focuses on how you study rather than what you study, 
+        so the techniques apply to any subject — from math and science to reading and writing.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">Can SmartStudy guarantee I will pass my exams?<span>+</span></button>
+      <div class="faq-answer">
+        While no tool can guarantee results, SmartStudy is built on scientifically proven study methods that 
+        significantly improve your chances of success when used consistently.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">What makes SmartStudy different from other study tools?<span>+</span></button>
+      <div class="faq-answer">
+        SmartStudy focuses on simplicity and effectiveness. 
+        Instead of overwhelming you with features, it delivers clear, actionable guidance to help you build strong study habits.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">Can I use SmartStudy on my phone?<span>+</span></button>
+      <div class="faq-answer">
+        Yes! SmartStudy is responsive accessible on any device, including phones, tablets, and desktops, 
+        so you can study anytime, anywhere.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">How long should my study sessions be?<span>+</span></button>
+      <div class="faq-answer">
+        We recommend focused sessions of 25–50 minutes with short breaks in between. 
+        SmartStudy tips are designed around these proven productivity techniques.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">What if I feel overwhelmed or burnt out?<span>+</span></button>
+      <div class="faq-answer">
+        SmartStudy encourages balance. Take breaks, stay hydrated, and don’t aim for perfection. 
+        Consistency is more important than intensity.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">Is SmartStudy free to use?<span>+</span></button>
+      <div class="faq-answer">
+        Basic features are available for free. Additional features or advanced tools may be introduced in the future.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">How do I get the most out of SmartStudy?<span>+</span></button>
+      <div class="faq-answer">
+        Use the tips regularly
+        Stay consistent with your study schedule
+        Apply the techniques actively (don’t just read them)
+        Track your progress over time
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">Can I save or share my tips?<span>+</span></button>
+      <div class="faq-answer">
+        Yes! You can easily copy your generated tips and save or share them for later use.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">Will more features be added?<span>+</span></button>
+      <div class="faq-answer">
+        Yes! We’re continuously improving SmartStudy to include more personalized insights, tracking tools, and smarter recommendations.
+      </div>
+    </div>
+
+    </div>
   </div>
 </section>
 
+
+<!-- FAQs + Categorization --> 
+<!-- <section id="faq" class="section-offset faq">
+  <div class="faq-container">
+    <h2>Frequently Asked Questions</h2>
+    <br><br> -->
+
+    <!-- <div class="faq-grid"> -->
+      <!-- Category 1: Getting Started -->
+      <!-- <div class="faq-category">
+        <h3>Getting Started</h3>
+        <div class="faq-item">
+          <button class="faq-question">What is SmartStudy?<span>+</span></button>
+          <div class="faq-answer">
+            SmartStudy is an AI-powered study assistant designed to help you learn more efficiently, stay consistent, and avoid burnout. It provides smart tips, structured guidance, and tools to improve your study habits.
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">How do I use the tips?<span>+</span></button>
+          <div class="faq-answer">
+            Generate tips and apply them during your study sessions for best results.
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Do I need to create an account to use SmartStudy?<span>+</span></button>
+          <div class="faq-answer">
+            Some features may require you to log in so your progress and preferences can be saved. This helps create a more consistent and effective study experience.
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Are the AI tips personalized?<span>+</span></button>
+          <div class="faq-answer">
+            Currently, the tips are based on proven study strategies that work for most learners. As the platform evolves, personalization features will be introduced to tailor recommendations to your study style and goals.
+          </div>
+        </div>
+      </div> -->
+
+      <!-- Category 2: Features & Usage -->
+      <!-- <div class="faq-category">
+        <h3>Features & Usage</h3>
+        <div class="faq-item">
+          <button class="faq-question">How often should I use the AI tips feature?<span>+</span></button>
+          <div class="faq-answer">
+            You can use it as often as you need! Many users generate tips daily before study sessions to stay focused and motivated.
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Is SmartStudy suitable for all subjects?<span>+</span></button>
+          <div class="faq-answer">
+            Yes! SmartStudy focuses on how you study rather than what you study, so the techniques apply to any subject — from math and science to reading and writing.
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">What makes SmartStudy different from other study tools?<span>+</span></button>
+          <div class="faq-answer">
+            SmartStudy focuses on simplicity and effectiveness. Instead of overwhelming you with features, it delivers clear, actionable guidance to help you build strong study habits.
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Can I use SmartStudy on my phone?<span>+</span></button>
+          <div class="faq-answer">
+            Yes! SmartStudy is responsive accessible on any device, including phones, tablets, and desktops, so you can study anytime, anywhere.
+          </div>
+        </div>
+      </div> -->
+
+      <!-- Category 3: Study & Productivity -->
+      <!-- <div class="faq-category">
+        <h3>Study & Productivity</h3>
+        <div class="faq-item">
+          <button class="faq-question">How long should my study sessions be?<span>+</span></button>
+          <div class="faq-answer">
+            We recommend focused sessions of 25–50 minutes with short breaks in between. SmartStudy tips are designed around these proven productivity techniques.
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">What if I feel overwhelmed or burnt out?<span>+</span></button>
+          <div class="faq-answer">
+            SmartStudy encourages balance. Take breaks, stay hydrated, and don’t aim for perfection. Consistency is more important than intensity.
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Is SmartStudy free to use?<span>+</span></button>
+          <div class="faq-answer">
+            Basic features are available for free. Additional features or advanced tools may be introduced in the future.
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Can I save or share my tips?<span>+</span></button>
+          <div class="faq-answer">
+            Yes! You can easily copy your generated tips and save or share them for later use.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+
     
     <!-- CONTACT US -->
-    <section id="contact" class="section">
+    <section id="contact" class="section-offset section">
         <h2>Contact Us</h2>
         <p>We’d love to hear from you!</p>
         
@@ -279,14 +499,17 @@
         </form>
     </section>
 
-  <!-- CTA Strip -->
-<section class="cta-strip">
+  <!-- CTA STRIP -->
+<section class="section-offset cta-strip">
   <div class="container">
     <h2>Ready to take control of your studies?</h2>
-    <button class="btn" data-link="#ai-tips">Start planning now</button>
+    <button class="btn" onclick="window.location.href='planner.html'" data-link="#ai-tips">Start planning now</button>
+     <!-- <a href="planner.html" class="btn">Start planning now</a> -->
   </div>
 </section>
 
+
+<!-- FOOTER -->
 <footer class="footer-main">
   <div class="container">
     <div class="footer-grid">
@@ -313,14 +536,12 @@
       </div>
     </div>
     <div class="footer-bottom">
-      © 2026 StudySmart. All rights reserved.
+      © 2026 SmartStudy. All rights reserved.
     </div>
   </div>
 </footer>
 
-
-    
-    <script src="script.js"></script>
+<script src="script.js"></script>
 
 </body>
 </html>

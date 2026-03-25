@@ -20,36 +20,106 @@ window.addEventListener("load", () => {
 });
 
 // Reset scroll on refresh
-window.onbeforeunload = function () {
+// window.onbeforeunload = function () {
+//   window.scrollTo(0, 0);
+// };
+
+window.onload = () => {
   window.scrollTo(0, 0);
 };
 
 
 // SHOW ALERT AFTER 1 MINUTE
+const breakMessages = [
+  "Reminder to Take a Break! Time for a quick stretch!",
+  "Time for a 5-minute breather! Step away from the screen!",
+  "Pause & Refresh. Your brain deserves a break.",
+  "Stand up, grab some water, and take a quick walk.",
+  "Time for a brain break! Look away from your screen for 5 minutes.",
+  "Brain capacity 99% full. Pause to relax and recharge"
+];
+
+function showRandomAlert() {
+  const alertBox = document.getElementById("alertBox");
+  if (!alertBox) return; // prevents errors in case pages are missing the alert code
+
+  const messageEl = document.querySelector(".alert-message");
+
+  // pick random message
+  const randomIndex = Math.floor(Math.random() * breakMessages.length);
+  messageEl.innerText = breakMessages[randomIndex];
+
+  // show alert
+  alertBox.classList.add("show");
+  document.body.classList.add("alert-visible");
+
+  // auto close after 8 seconds (optional but nice)
+  setTimeout(() => {
+    closeAlert();
+  }, 8000);
+}
+
+// first alert after 1 minute(60000) and then repeat every 25 mins
+// setTimeout(showRandomAlert, 60000);
+// setInterval(showRandomAlert, 25 * 60 * 1000);
+
+// for Demo
+setTimeout(showRandomAlert, 5000);   // first alert after 5s
+setInterval(showRandomAlert, 20000); // every 20s
+
+
 setTimeout(() => {
   const alertBox = document.getElementById("alertBox");
-  alertBox.classList.remove("hidden");
+//   alertBox.classList.remove("hidden");
   alertBox.classList.add("show");
   document.body.classList.add("alert-visible"); // to add spacing only when alert is visible
-}, 30000); // 30 seconds for testing, change to 60000 for 1 minute
+}, 10000); // 10 seconds for testing, change to 60000 for 1 minute
 
 // CLOSE ALERT
 function closeAlert() {
   const alertBox = document.getElementById("alertBox");
   alertBox.classList.remove("show");
-  alertBox.classList.add("hidden");
+//   alertBox.classList.add("hidden");
   document.body.classList.remove("alert-visible");
 }
+
+// MOBILE MENU
+function toggleMenu() {
+  const nav = document.getElementById("navLinks");
+  nav.classList.toggle("active");
+
+  document.body.classList.toggle("menu-open"); /* prevents scrolling when mobile menu is open */
+  document.documentElement.classList.toggle("menu-open"); 
+}
+
+
+// closes menu when an interaction occurs - link on nav or page
+document.querySelectorAll("#navLinks a").forEach(link => {
+  link.addEventListener("click", () => {
+    document.getElementById("navLinks").classList.remove("active");
+    document.body.classList.remove("menu-open");
+    document.documentElement.classList.remove("menu-open");
+  });
+});
+
+
+
 
 
 // MODAL
 function openModal(type) {
   const modal = document.getElementById("modal");
+  if (!modal) return;
+
   const title = document.getElementById("modal-title");
   const subtitle = document.getElementById("modal-subtitle");
   const switchText = document.getElementById("switchText");
-  document.body.classList.add("modal-open");
 
+  const form = document.querySelector(".modal-form");
+  form.reset(); // clears form every time modal opens
+
+
+  document.body.classList.add("modal-open");
   modal.style.display = "block";
 
   if (type === "login") {
@@ -89,6 +159,26 @@ window.onclick = function(event) {
     document.body.classList.remove("modal-open"); 
   }
 }
+
+// MODAL FORM SUBMIT BEHAVIOR
+function handleAuth(event) {
+  event.preventDefault();
+
+  const form = event.target; // get the form
+  const modalTitle = document.getElementById("modal-title").innerText;
+
+  if (modalTitle.toLowerCase().includes("sign up")) {
+    alert("Thank you for your interest. Stay tuned for the Product Launch.");
+    
+    form.reset(); // clears input and resets form
+    closeModal();
+  } 
+  else {
+    form.reset(); // clears input before redirect
+    window.location.href = "profile.html";
+  }
+}
+
 
 // AI STUDY TIPS
 const tips = [
@@ -154,7 +244,7 @@ copyBtn.addEventListener("click", () => {
   navigator.clipboard.writeText(tipsOutput.value);
 
   // copy feedback (change icon)
-  copyBtn.textContent = "Tips copied to clipboard!✅";
+  copyBtn.textContent = "Copied!✅";
 
   setTimeout(() => {
     // copyBtn.textContent = "📋";
@@ -163,24 +253,24 @@ copyBtn.addEventListener("click", () => {
 });
 
 
-const questions = document.querySelectorAll(".faq-question");
 
-questions.forEach((q) => {
-  q.addEventListener("click", () => {
-    const answer = q.nextElementSibling;
+// FAQs
+const faqItems = document.querySelectorAll(".faq-item");
 
-    // close others
-    document.querySelectorAll(".faq-answer").forEach(a => {
-      if (a !== answer) a.style.display = "none";
+faqItems.forEach(item => {
+  const question = item.querySelector(".faq-question");
+
+  question.addEventListener("click", () => {
+
+    // Close all others
+    faqItems.forEach(i => {
+      if (i !== item) i.classList.remove("active");
     });
 
-    // toggle current
-    answer.style.display =
-      answer.style.display === "block" ? "none" : "block";
+    // Toggle current
+    item.classList.toggle("active");
   });
 });
-
-
 
 
 // CONTACT FORM

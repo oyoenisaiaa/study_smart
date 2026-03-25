@@ -1,23 +1,93 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Team</title>
-  <link rel="stylesheet" href="css/style.css">
-</head>
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>SmartStudy</title>
+        <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    
+    <body>
+        <!-- ALERT -->
+        <div id="alertBox" class="alert">
+            <div class="alert-content">
+                <span class="alert-icon">🔔</span>
+                <span class="alert-message">Reminder to Take a Break! Time for a quick stretch!</span> 
+            </div>
+            
+            <div class="alert-close-wrapper">
+                <button onclick="closeAlert()">×</button>
+            </div>
+        </div>
 
-<body>
-    <header>
-  <h1>StudySmart</h1>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="planner.html">Planner</a>
-    <a href="subjects.html">Subjects</a>
-    <a href="tips.html">AI Tips</a>
-    <a href="team.html">Team</a>
-  </nav>
-</header>
 
-<button onclick="goBack()" class="back-btn">⬅ Back</button>
+        <!-- NAVBAR -->
+        <header class="navbar">
+            
+            <!-- Logo -->
+            <!-- <div class="logo">
+                <img src="https://www.w3schools.com/images/w3schools_logo_436_2.png" alt="SmartStudy">
+            </div> -->
+
+            <div class="logo">
+                <span class="logo-placeholder">S</span>
+            </div>
+            
+            <!-- NavBar -->
+            <nav class="nav-links" id="navLinks">
+                <ul>
+                    <li><a class="active" href="index.html">Home</a></li>
+                    <li><a href="planner.html">Planner</a></li>
+                    <li><a href="subjects.html">Subjects</a></li>
+                    <li><a href="index.html#ai-tips">AI Study Tips</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Sign up/Login buttons -->
+            <div class="auth-buttons">
+                <button onclick="openModal('signup')">Sign Up</button>
+                <button onclick="openModal('login')">Log In</button>
+            </div>
+
+            <!-- Hamburger for mobile-->
+             <div class="hamburger" onclick="toggleMenu()">☰</div>
+        </header> <!-- End of NavBar -->
+    
+    
+    <!-- MODAL -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+
+            <!-- Modal titles -->
+            <h2 class="welcome-title">Welcome to SmartStudy</h2>
+            <h3 id="modal-title"></h3>
+            <p id="modal-subtitle"></p>
+
+            <!-- Modal forms -->
+            <form class="modal-form" onsubmit="handleAuth(event)">
+                <label>Email Address<span>*</span></label>
+                <div class="input-group">
+                    <span class="icon">📧</span>
+                    <input type="email" placeholder="Enter your email address" required>
+                </div>
+                
+                <label>Password<span>*</span></label>
+                <div class="input-group">
+                    <span class="icon">🔒</span>
+                    <input type="password" placeholder="Enter your password" required>
+                </div>
+                
+                <button type="submit">Submit</button>
+
+                <!-- Redirection between modals -->
+                <p id="switchText" class="switch-text"></p>
+
+            </form>
+        </div>
+    </div> <!-- End of Modal -->
 
 <h1 class="fade-in">Meet the Team</h1>
 
@@ -32,6 +102,40 @@
   <p>Role: Designer</p>
   <p>Designed UI and layouts</p>
 </div>
+
+
+
+<!-- Footer -->
+    <footer class="footer-main">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Product</h3>
+                    <a href="subjects.html">Subjects</a>
+                    <a href="index.html#ai-tips">AI Tips</a>
+                    <a href="planner.html">Study Planner</a>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Support</h3>
+                    <a href="index.html#contact">Contact us</a>
+                    <a href="index.html#testimonials">Testimonials</a>
+                    <a href="index.html#faq">FAQs</a>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Company</h3>
+                    <a href="index.html#home">About</a>
+                    <a href="team.html">Team</a>
+                    <a href="index.html#contact">Privacy Policy</a>
+                </div>
+            </div>
+            <div class="footer-bottom">© 2026 SmartStudy. All rights reserved.</div>
+        </div>
+    </footer>
+
+
+<script src="script.js"></script>
 
 </body>
 </html>

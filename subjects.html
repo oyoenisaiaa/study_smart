@@ -1,55 +1,73 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Subjects & Resources</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>SmartStudy</title>
+        <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    
+    <body>
+        <!-- ALERT -->
+        <div id="alertBox" class="alert">
+            <div class="alert-content">
+                <span class="alert-icon">🔔</span>
+                <span class="alert-message">Reminder to Take a Break! Time for a quick stretch!</span> 
+            </div>
+            
+            <div class="alert-close-wrapper">
+                <button onclick="closeAlert()">×</button>
+            </div>
+        </div>
 
-  <!-- ALERT (optional, same as homepage) -->
-  <div id="alertBox" class="alert hidden">
-      <div class="alert-content">
-          <span class="alert-icon">🔔</span>
-          <span class="alert-message">Reminder to Take a Break!</span>
-      </div>
-      <button class="alert-close" onclick="closeAlert()">×</button>
-  </div>
 
-  <!-- NAVBAR (same as homepage) -->
-  <header class="navbar">
-      <div class="logo">
-          <img src="https://www.w3schools.com/images/w3schools_logo_436_2.png" alt="StudySmart Logo">
-      </div>
-      <nav class="nav-links">
-          <ul>
-              <li><a href="index.html">Home</a></li>
-              <li><a href="planner.html">Planner</a></li>
-              <li><a class="active" href="subjects.html">Subjects</a></li>
-              <li><a href="index.html#ai-tips">AI Study Tips</a></li>
-              <li><a href="index.html#contact">Contact</a></li>
-          </ul>
-      </nav>
-      <div class="auth-buttons">
-          <button onclick="openModal('signup')">Sign Up</button>
-          <button onclick="openModal('login')">Log In</button>
-      </div>
-  </header>
+        <!-- NAVBAR -->
+        <header class="navbar">
+            
+            <!-- Logo -->
+            <!-- <div class="logo">
+                <img src="https://www.w3schools.com/images/w3schools_logo_436_2.png" alt="SmartStudy">
+            </div> -->
 
-  <!-- MODAL -->
+            <div class="logo">
+                <span class="logo-placeholder">S</span>
+            </div>
+            
+            <!-- NavBar -->
+            <nav class="nav-links" id="navLinks">
+                <ul>
+                    <li><a class="active" href="index.html">Home</a></li>
+                    <li><a href="planner.html">Planner</a></li>
+                    <li><a href="subjects.html">Subjects</a></li>
+                    <li><a href="index.html#ai-tips">AI Study Tips</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Sign up/Login buttons -->
+            <div class="auth-buttons">
+                <button onclick="openModal('signup')">Sign Up</button>
+                <button onclick="openModal('login')">Log In</button>
+            </div>
+
+            <!-- Hamburger for mobile-->
+             <div class="hamburger" onclick="toggleMenu()">☰</div>
+        </header> <!-- End of NavBar -->
+    
+    
+    <!-- MODAL -->
     <div id="modal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
 
             <!-- Modal titles -->
-            <h2 class="welcome-title">Welcome to StudySmart</h2>
+            <h2 class="welcome-title">Welcome to SmartStudy</h2>
             <h3 id="modal-title"></h3>
             <p id="modal-subtitle"></p>
 
             <!-- Modal forms -->
-            <form class="modal-form">
+            <form class="modal-form" onsubmit="handleAuth(event)">
                 <label>Email Address<span>*</span></label>
                 <div class="input-group">
                     <span class="icon">📧</span>
@@ -74,7 +92,7 @@
   <!-- Page Title -->
   <section class="page-header">
     <h1>Subjects We Offer</h1>
-    <p>Explore the subjects for which StudySmart can generate personalized study plans.</p>
+    <p>Explore the subjects for which SmartStudy can generate personalized study plans.</p>
   </section>
 
   <!-- Subjects Cards -->
@@ -89,11 +107,42 @@
   </section>
 
   <!-- CTA Button -->
-  <section class="cta-strip">
+  <section class="cta-strip-subjects">
     <div class="container">
       <button class="btn" onclick="location.href='planner.html'">Start planning now</button>
     </div>
   </section>
+
+
+
+  <!-- Footer -->
+    <footer class="footer-main">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Product</h3>
+                    <a href="subjects.html">Subjects</a>
+                    <a href="index.html#ai-tips">AI Tips</a>
+                    <a href="planner.html">Study Planner</a>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Support</h3>
+                    <a href="index.html#contact">Contact us</a>
+                    <a href="index.html#testimonials">Testimonials</a>
+                    <a href="index.html#faq">FAQs</a>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Company</h3>
+                    <a href="index.html#home">About</a>
+                    <a href="team.html">Team</a>
+                    <a href="index.html#contact">Privacy Policy</a>
+                </div>
+            </div>
+            <div class="footer-bottom">© 2026 SmartStudy. All rights reserved.</div>
+        </div>
+    </footer>
 
   <script src="script.js"></script>
 </body>
