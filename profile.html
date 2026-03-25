@@ -1,131 +1,347 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>SmartStudy</title>
-        <link rel="stylesheet" href="style.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    </head>
-    
-    <body>
-        <!-- ALERT -->
-        <div id="alertBox" class="alert">
-            <div class="alert-content">
-                <span class="alert-icon">🔔</span>
-                <span class="alert-message">Reminder to Take a Break! Time for a quick stretch!</span> 
-            </div>
-            
-            <div class="alert-close-wrapper">
-                <button onclick="closeAlert()">×</button>
-            </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Study Planner Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="styles-profile.css">
+   
+</head>
+<body>
+    <main class="dashboard-main">
+    <header class="dashboard_heading">
+
+
+        <div class="heading">
+            <h2><Strong>StudySmart</Strong></h2>
+            <br>
+            <p class="Welcome"><strong>Welcome To Your Dashboard</strong></p>
         </div>
 
 
-        <!-- NAVBAR -->
-        <header class="navbar">
-            
-            <!-- Logo -->
-            <!-- <div class="logo">
-                <img src="https://www.w3schools.com/images/w3schools_logo_436_2.png" alt="SmartStudy">
-            </div> -->
+        <time id="current-date" datetime="" class="current_date"></time>
 
-            <div class="logo">
-                <span class="logo-placeholder">SmartStudy</span>
-            </div>
-            
-            <!-- NavBar -->
-            <nav class="nav-links" id="navLinks">
-                <ul>
-                    <li><a class="active" href="index.html">Home</a></li>
-                    <li><a href="planner.html">Planner</a></li>
-                    <li><a href="subjects.html">Subjects</a></li>
-                    <li><a href="index.html#ai-tips">AI Study Tips</a></li>
-                    <li><a href="index.html#contact">Contact</a></li>
-                </ul>
-            </nav>
-            
-            <!-- Sign up/Login buttons -->
-            <div class="auth-buttons">
-                <button onclick="openModal('signup')">Sign Up</button>
-                <button onclick="openModal('login')">Log In</button>
-            </div>
 
-            <!-- Hamburger for mobile-->
-             <div class="hamburger" onclick="toggleMenu()">☰</div>
-        </header> <!-- End of NavBar -->
-    
-    
-    <!-- MODAL -->
-    <div id="modal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
+    </header>
 
-            <!-- Modal titles -->
-            <h2 class="welcome-title">Welcome to SmartStudy</h2>
-            <h3 id="modal-title"></h3>
-            <p id="modal-subtitle"></p>
 
-            <!-- Modal forms -->
-            <form class="modal-form" onsubmit="handleAuth(event)">
-                <label>Email Address<span>*</span></label>
-                <div class="input-group">
-                    <span class="icon">📧</span>
-                    <input type="email" placeholder="Enter your email address" required>
-                </div>
-                
-                <label>Password<span>*</span></label>
-                <div class="input-group">
-                    <span class="icon">🔒</span>
-                    <input type="password" placeholder="Enter your password" required>
-                </div>
-                
-                <button type="submit">Submit</button>
-
-                <!-- Redirection between modals -->
-                <p id="switchText" class="switch-text"></p>
-
-            </form>
+    <section class="Hero-banner">
+        <div class="Hero_text">
+            <p id="greeting" class="Greeting">Good morning, Joe!</p>
+            <p class="Second_text">Let's get ready to study</p>
         </div>
-    </div> <!-- End of Modal -->
 
-<section style="text-align:center; margin-top:50px;">
-  <h1>Welcome Back 👋</h1>
-  <p>This is your profile dashboard (Code test view)</p>
+
+        <div class="Hero-image">
+            <img src="https://i.postimg.cc/CL7RnygK/Female-designer-working-late-in-room-flat-vector-illustration.jpg" alt="A female student studying in the night.">
+        </div>
+    </section>
+
+
+
+
+    <!-- Statistics -->
+    <section class="stats_container">
+        <!-- Tasks Completed -->
+        <article class="stat-card">
+            <div class="green_icon">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+
+
+            <div class="stat-value">
+                <span class="stat_number">12</span>
+                <span class="tasks_comp">Tasks Completed</span>
+            </div>
+        </article>
+
+
+        <!-- Study Time -->
+        <article class="stat-card">
+           <div class="blue icon">
+            <i class="fa-solid fa-clock"></i>
+           </div>
+
+
+           <div class="stat-time">
+            <span class="stat-number">3h 30m</span>
+            <span class="study_time">Study Time</span>
+           </div>
+        </article>
+
+
+        <!-- Streak -->
+         <article class="stat-card">
+            <div class="fire_icon">
+                <i class="fa-solid fa-fire"></i>
+            </div>
+
+
+            <div class="streak">
+                <span class="streak-number">5</span>
+                <span class="streak_day">Day Streak</span>
+            </div>
+         </article>
+        </section>
+
+
+
+
+
+
+    <div class="bottom-content">
+          <!-- Today's Study Plan -->
+     <section class="TSP_heading">
+        <h3>Today's Study Plan</h3>
+       
+        <!-- Tasks and Progress -->
+         <!-- ICT  -->
+        <article class="task_group">
+         <h4 class="task_name">Prepare for Quiz</h4>
+   
+         <div class="task-details">
+            <span class="ICT_tag">I.C.T</span>
+            <span class="percentage">80% Completed</span>
+         </div>
+
+
+          <div class="progress-bar">
+      <div class="ICT_progress_bar" style="width: 80%;"></div>
+    </div>
+        </article>
+
+
+        <!-- Maths -->
+        <article class="task_group">
+            <h4 class="task_name">Math Practice</h4>
+
+
+            <div class="task_details">
+                <span class="Math_tag">Mathematics</span>
+                <span class="percentage">45% completed</span>
+            </div>
+
+
+             <div class="progress-bar">
+                  <div class="Maths_progress_bar" style="width: 45%;"></div>
+            </div>
+        </article>
+
+
+        <!-- Biology -->
+        <article class="task_group">
+            <h4 class="task_name">Biology Revision</h4>
+
+
+            <div class="task_details">
+                <span class="Biology_tag">Biology</span>
+                <span class="due_date">Due: Tomorrow</span>
+            </div>
+
+
+
+
+            <div class="progress-bar">
+                <div class="Biology_progress_bar" style="width: 25%"></div>
+        </div>
+        </article>
+
+
+     </section>
+
+
+      <section class="ai_assistant_container">
+  <h3>AI Study Assistant</h3>
+
+
+  <div class="chat_display">
+    <div class="chat_display">
+
+
+
+
+    <!-- Suggestion 1: Updated text -->
+     <a href="https://www.algoreducation.com/en/ai-study-notes-generator" target="_blank" style="text-decoration: none;">
+    <div class="ai_message">
+        <p>Get a personalized summary of your latest lecture. </p>
+    </div>
+   
+    <!-- Suggestion 2: Link to online Biology notes -->
+    <!-- target="_blank" ensures the link opens in a new tab -->
+    <a href="https://knowt.com/subject/Science/Biology-notes" target="_blank" style="text-decoration: none;">
+        <div class="ai_message">
+            <p> Review your biology notes for 30 minutes. </p>
+        </div>
+    </a>
+   
+    <!-- Suggestion 3: Link to YouTube Reels/Shorts for a break -->
+    <a href="https://www.youtube.com" target="_blank" style="text-decoration: none;">
+        <div class="ai_message">
+            <p>Time for a quick break! Take 10 minutes to relax.</p>
+        </div>
+     </a>
+    </div>
+
+
+   
+
+
+  <form class="chat-input-area">
+    <input type="text" placeholder="Ask AI..." class="ai-input">
+    <button type="submit" class="send-btn">Send</button>
+  </form>
 </section>
 
 
+    </div>
 
-<!-- Footer -->
-    <footer class="footer-main">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h3>Product</h3>
-                    <a href="subjects.html">Subjects</a>
-                    <a href="index.html#ai-tips">AI Tips</a>
-                    <a href="planner.html">Study Planner</a>
-                </div>
-                
-                <div class="footer-col">
-                    <h3>Support</h3>
-                    <a href="index.html#contact">Contact us</a>
-                    <a href="index.html#testimonials">Testimonials</a>
-                    <a href="index.html#faq">FAQs</a>
-                </div>
-                
-                <div class="footer-col">
-                    <h3>Company</h3>
-                    <a href="index.html#home">About</a>
-                    <a href="team.html">Team</a>
-                    <a href="index.html#contact">Privacy Policy</a>
-                </div>
-            </div>
-            <div class="footer-bottom">© 2026 SmartStudy. All rights reserved.</div>
+
+</main>
+
+
+
+
+
+
+<!-- Side Panel -->
+ <!-- THE MAIN SIDE PANEL SECTION -->
+<aside class="dashboard-sidebar">
+
+
+  <!-- BLOCK 1: Profile & Logout -->
+  <div class="profile-block">
+    <a href="#" class="logout-link">Log out</a>
+    <div class="avatar-container">
+      <img src="https://i.postimg.cc/DZ6gYjGw/John-Joe.png" alt="User Avatar">
+    </div>
+    <h2 class="user-name">John Joe</h2>
+    <p class="user-role">Student</p>
+  </div>
+
+
+  <!-- BLOCK 2: Reminders -->
+  <div class="reminders-block">
+    <h3>Reminders</h3>
+   
+    <!-- Physics -->
+    <div class="reminder-item">
+      <div class="time-box physics-color">12pm</div>
+      <div class="text-group">
+        <span class="subject">Physics</span>
+        <span class="day">Tuesdays</span>
+      </div>
+    </div>
+
+
+    <!-- Chemistry -->
+    <div class="reminder-item">
+      <div class="time-box chemistry-color">4pm</div>
+      <div class="text-group">
+        <span class="subject">Chemistry</span>
+        <span class="day">Wednesdays</span>
+      </div>
+    </div>
+
+
+    <!-- Economics -->
+    <div class="reminder-item">
+        <div class="time-box econ-color">11am</div>
+        <div class="text-group">
+            <span class="subject">Economics</span>
+            <span class="day">Thursdays</span>
         </div>
-    </footer>
+    </div>
 
-<script src="script.js"></script>
+
+
+
+    <!-- English -->
+    <div class="reminder-item">
+        <div class="time-box english-color">9am</div>
+        <div class="text-group">
+            <span class="subject">English</span>
+            <span class="day">Fridays</span>
+        </div>
+    </div>
+
+
+  <!-- BLOCK 3: The Calendar Button -->
+   <a href="https://calendar.google.com/calendar" target="_blank" style="text-decoration: none;">
+  <div class="calendar-block">
+    <button class="view-calendar-btn">
+      View Calendar <i class="fa-solid fa-chevron-right"></i>
+    </button>
+  </div>
+
+
+</aside>
+
+
+
+
+
+
+<!-- Real time changes -->
+<script>
+    function updateDashboardTime() {
+        const greetingElement = document.getElementById('greeting');
+        const dateElement = document.getElementById('current-date');
+        const now = new Date();
+
+
+        // 1. Update the Greeting based on the hour
+        const hour = now.getHours();
+
+
+         let greetingText = "";
+
+
+        // 1. Precise Greeting Logic
+        if (hour >= 5 && hour < 12) {
+            greetingText = "Good morning, Joe!";
+        } else if (hour >= 12 && hour < 17) {
+            greetingText = "Good afternoon, Joe!";
+        } else if (hour >= 17 && hour < 22) {
+            greetingText = "Good evening, Joe!";
+        } else {
+            // This covers 10:00 PM to 4:59 AM
+            greetingText = "Working late, Joe?";
+        }
+
+
+        greetingElement.textContent = greetingText;
+
+
+        // 2. Update the Date (Format: 20th March 2026, Friday)
+        const options = {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric',
+            weekday: 'long'
+        };
+       
+        // This creates the clean string "Wednesday, 25 March 2026"
+        let dateString = now.toLocaleDateString('en-GB', options);
+       
+        // Add the "th", "st", or "rd" to the number (Optional polish)
+        const day = now.getDate();
+        const suffix = (day % 10 === 1 && day !== 11) ? 'st' :
+                       (day % 10 === 2 && day !== 12) ? 'nd' :
+                       (day % 10 === 3 && day !== 13) ? 'rd' : 'th';
+       
+        dateElement.textContent = dateString.replace(day, day + suffix);
+       
+        // Update the machine-readable datetime attribute
+        dateElement.setAttribute('datetime', now.toISOString().split('T')[0]);
+    }
+
+
+    // Run the function immediately when the page loads
+    updateDashboardTime();
+</script>
+
 
 </body>
 </html>
