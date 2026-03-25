@@ -6,7 +6,40 @@
         <title>SmartStudy</title>
         <link rel="stylesheet" href="style.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+        <style>
+.linkedin-link {
+  display: block;           /* allows centering */
+  width: 24px;
+  height: 24px;
+  margin: 8px auto 0;       /* centers horizontally */
+  color: #6b7280;
+  transition: color 0.2s ease;
+  line-height: 0;
+}
+
+.linkedin-link::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: currentColor;
+
+  -webkit-mask: url('data:image/svg+xml;utf8,<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 11.268h-3v-5.604c0-1.337-.027-3.062-1.867-3.062-1.867 0-2.154 1.459-2.154 2.968v5.698h-3v-10h2.881v1.367h.041c.401-.761 1.381-1.562 2.843-1.562 3.04 0 3.602 2.001 3.602 4.604v5.591z"/></svg>') no-repeat center;
+
+  mask: url('data:image/svg+xml;utf8,<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 11.268h-3v-5.604c0-1.337-.027-3.062-1.867-3.062-1.867 0-2.154 1.459-2.154 2.968v5.698h-3v-10h2.881v1.367h.041c.401-.761 1.381-1.562 2.843-1.562 3.04 0 3.602 2.001 3.602 4.604v5.591z"/></svg>') no-repeat center;
+
+  mask-size: contain;
+  -webkit-mask-size: contain;
+}
+
+.linkedin-link:hover {
+  color: #2563eb;
+}
+</style>
     </head>
+
+
     
     <body>
         <!-- ALERT -->
@@ -31,7 +64,7 @@
             </div> -->
 
             <div class="logo">
-                <span class="logo-placeholder">S</span>
+                <span class="logo-placeholder">SmartStudy</span>
             </div>
             
             <!-- NavBar -->
@@ -89,19 +122,43 @@
         </div>
     </div> <!-- End of Modal -->
 
-<h1 class="fade-in">Meet the Team</h1>
 
-<div class="card fade-in">
-  <h3>Oyoenisai A.</h3>
-  <p>Role: Developer</p>
-  <p>Built homepage and core functionality</p>
-</div>
+  <!-- Page Title -->
+  <section class="page-header">
+    <h1>Meet the Team</h1>
+    <p>Women Techsters Bootcamp Cohort 5.0.</p>
+  </section>
 
-<div class="card fade-in">
-  <h3>Team Member</h3>
-  <p>Role: Designer</p>
+  <!-- Subjects Cards -->
+  <section class="subjects-container">
+    <div class="card fade-in"><h3>Matilda N</h3>
+        <p style="font-weight: bold;">Role: Software Developer</p>
+        <p>Led project coordination and planning</p>
+        <a href="https://linkedin.com/in/janedoe" class="linkedin-link" target="_blank"></a>
+    </div>
+
+    <div class="card fade-in"><h3>Adesewa</h3>
+        <p style="font-weight: bold;">Role: Designer</p>
+        <p>Designed UI and layouts</p>
+        <a href="https://linkedin.com/in/janedoe" class="linkedin-link" target="_blank"></a>
+    </div>
+
+    <div class="card fade-in">
+        <h3>Oyoenisai Andrew-Essien</h3>
+        <p style="font-weight: bold;">Role: Software Developer</p>
+        <p>Built homepage and core functionality</p>
+        <a href="https://www.linkedin.com/in/oyoenisaiaa/" class="linkedin-link" target="_blank"></a>
+    </div>
+
+    <div class="card fade-in">
+  <h3>Jane Doe</h3>
+  <p style="font-weight: bold;">Role: Designer</p>
   <p>Designed UI and layouts</p>
+  <a href="https://linkedin.com/in/janedoe" class="linkedin-link" target="_blank"></a>
 </div>
+
+    
+  </section>
 
 
 

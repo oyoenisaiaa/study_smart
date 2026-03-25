@@ -973,7 +973,9 @@ html.menu-open {
 }
 
 
-/* Pages */
+/* OTHER PAGES */
+
+/* Page titles for all */
 .page-header {
   text-align: center;
   /* margin: 30px 16px; */
@@ -994,7 +996,8 @@ html.menu-open {
   margin-top: 8px;
 }
 
-/* Subjects Cards Flex */
+
+/* Subjects cards styling */
 .subjects-container {
   display: flex;
   flex-wrap: wrap;
@@ -1012,7 +1015,6 @@ html.menu-open {
     color: var(--primary-500);
     font-weight: bold;
 }
-
 
 .subjects-container .card {
   background: #fff;
@@ -1056,7 +1058,14 @@ html.menu-open {
 
 
 
-/* CTA Button for footer */
+
+
+
+
+
+
+
+/* CTA Strip Button above footer */
 .cta-strip {
   background: var(--secondary-100);
   text-align: center;
