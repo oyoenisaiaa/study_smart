@@ -286,3 +286,68 @@ function submitForm(event) {
     message.innerText = "";
   }, 5000);
 }
+
+//PLANNER PAGE
+document.addEventListener("DOMContentLoaded", function() {
+  const studyForm = document.getElementById("studyForm");
+  if (!studyForm) {
+    console.error("studyForm not found!");
+    return;
+  }
+
+  studyForm.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const subject = document.getElementById("subject").value;
+    const hours = document.getElementById("hours").value;
+    const examDate = document.getElementById("examDate").value;
+
+    const output = document.getElementById("output");
+    const loading = document.getElementById("loading");
+    const error = document.getElementById("error");
+
+    // Reset states
+    error.classList.add("hidden");
+    output.innerHTML = "";
+
+    // ✅ Validation
+    if (!subject || !hours) {
+      error.textContent = "Please fill in all required fields.";
+      error.classList.remove("hidden");
+      return;
+    }
+
+    // Show loading
+    loading.classList.remove("hidden");
+
+    setTimeout(() => {
+      loading.classList.add("hidden");
+
+      const topics = {
+        math: ["Algebra", "Geometry", "Trigonometry", "Statistics", "Revision"],
+        english: ["Grammar", "Essay Writing", "Comprehension", "Vocabulary", "Revision"],
+        science: ["Biology", "Chemistry", "Physics", "Experiments", "Revision"]
+      };
+
+      let planHTML = `<h3 class="text-lg font-semibold mb-2">Your 7-Day Study Plan</h3>`;
+
+      for (let i = 0; i < 7; i++) {
+        const topic = topics[subject][i % topics[subject].length];
+
+        planHTML += `
+          <div class="flex items-center gap-2 p-3 bg-blue-50 rounded shadow-sm">
+            <input type="checkbox" class="accent-blue-600">
+            <span><strong>Day ${i + 1}:</strong> ${topic} (${hours} hrs)</span>
+          </div>
+        `;
+      }
+
+      if (examDate) {
+        planHTML += `<p class="mt-3 text-sm text-gray-600"><strong>Exam Date:</strong> ${examDate}</p>`;
+      }
+
+      output.innerHTML = planHTML;
+
+    }, 1200);
+  });
+});
