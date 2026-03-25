@@ -1,4 +1,5 @@
 // NAVIGATION
+console.log("JS loaded");
 function goToPage(page) {
   window.location.href = page;
 }
@@ -288,15 +289,13 @@ function submitForm(event) {
 }
 
 //PLANNER PAGE
-document.addEventListener("DOMContentLoaded", function() {
-  const studyForm = document.getElementById("studyForm");
-  if (!studyForm) {
-    console.error("studyForm not found!");
-    return;
-  }
+const studyForm = document.getElementById("studyForm");
 
-  studyForm.addEventListener("submit", function(e) {
+if (studyForm) {
+  studyForm.addEventListener("submit", function (e) {
     e.preventDefault();
+
+    console.log("Form submitted");
 
     const subject = document.getElementById("subject").value;
     const hours = document.getElementById("hours").value;
@@ -306,18 +305,15 @@ document.addEventListener("DOMContentLoaded", function() {
     const loading = document.getElementById("loading");
     const error = document.getElementById("error");
 
-    // Reset states
     error.classList.add("hidden");
     output.innerHTML = "";
 
-    // ✅ Validation
     if (!subject || !hours) {
       error.textContent = "Please fill in all required fields.";
       error.classList.remove("hidden");
       return;
     }
 
-    // Show loading
     loading.classList.remove("hidden");
 
     setTimeout(() => {
@@ -350,4 +346,4 @@ document.addEventListener("DOMContentLoaded", function() {
 
     }, 1200);
   });
-});
+}

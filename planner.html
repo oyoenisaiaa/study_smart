@@ -4,19 +4,57 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SmartStudy - AI Planner</title>
+
+  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Your CSS -->
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body class="bg-gray-100">
 
-  <!-- Page Header -->
-  <header class="bg-blue-600 text-white p-6 text-center">
-    <h1 class="text-3xl font-bold">AI Study Planner</h1>
-    <p class="mt-2">Create your personalized 7-day study plan</p>
+  <!-- ALERT -->
+  <div id="alertBox" class="alert">
+    <div class="alert-content">
+      <span class="alert-icon">🔔</span>
+      <span class="alert-message">Reminder to Take a Break! Time for a quick stretch!</span> 
+    </div>
+    <div class="alert-close-wrapper">
+      <button onclick="closeAlert()">×</button>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="logo">
+      <span class="logo-placeholder">SmartStudy</span>
+    </div>
+    
+    <nav class="nav-links" id="navLinks">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a class="active" href="planner.html">Planner</a></li>
+        <li><a href="subjects.html">Subjects</a></li>
+        <li><a href="index.html#ai-tips">AI Study Tips</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+    
+    <div class="auth-buttons">
+      <button onclick="openModal('signup')">Sign Up</button>
+      <button onclick="openModal('login')">Log In</button>
+    </div>
+
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
   </header>
 
-  <!-- Planner Form -->
-  <main class="max-w-lg mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
-    <h2 class="text-xl font-semibold mb-4">Your AI-powered study companion</h2>
+  <!-- MAIN -->
+  <main class="max-w-lg mx-auto mt-28 p-6 bg-white rounded-lg shadow-md">
+
+    <h2 class="text-xl font-semibold mb-4">
+      Your AI-powered study companion
+    </h2>
 
     <form id="studyForm" class="space-y-4">
 
@@ -34,20 +72,23 @@
       <!-- Study Hours -->
       <div>
         <label class="block mb-1 font-medium">Study hours per day*</label>
-        <input type="number" id="hours" placeholder="e.g 2" class="w-full p-2 border border-gray-300 rounded bg-blue-50" />
+        <input type="number" id="hours" placeholder="e.g 2"
+          class="w-full p-2 border border-gray-300 rounded bg-blue-50" />
       </div>
 
-      <!-- Exam Date (optional) -->
+      <!-- Exam Date -->
       <div>
         <label class="block mb-1 font-medium">Exam Date (optional)</label>
-        <input type="date" id="examDate" class="w-full p-2 border border-gray-300 rounded bg-blue-50" />
+        <input type="date" id="examDate"
+          class="w-full p-2 border border-gray-300 rounded bg-blue-50" />
       </div>
 
-      <!-- Error Message -->
+      <!-- Error -->
       <p id="error" class="text-red-500 text-sm hidden"></p>
 
-      <!-- Submit Button -->
-      <button type="submit" class="w-full py-2 bg-blue-600 text-white font-semibold rounded hover:bg-blue-700">
+      <!-- Button -->
+      <button type="submit"
+        class="w-full py-2 bg-blue-600 text-white font-semibold rounded hover:bg-blue-700">
         Generate Study Plan
       </button>
 
@@ -60,74 +101,98 @@
 
     <!-- Output -->
     <div id="output" class="mt-6 space-y-3"></div>
+
   </main>
 
-  <!-- Footer -->
+  <!-- FOOTER -->
   <footer class="mt-12 p-6 text-center text-gray-500 text-sm">
     © 2026 SmartStudy. All rights reserved.
   </footer>
 
-  <!-- JS -->
+  <!-- MODAL -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+
+      <h2 class="welcome-title">Welcome to SmartStudy</h2>
+      <h3 id="modal-title"></h3>
+      <p id="modal-subtitle"></p>
+
+      <form class="modal-form" onsubmit="handleAuth(event)">
+        <label>Email Address<span>*</span></label>
+        <div class="input-group">
+          <span class="icon">📧</span>
+          <input type="email" placeholder="Enter your email address" required>
+        </div>
+        
+        <label>Password<span>*</span></label>
+        <div class="input-group">
+          <span class="icon">🔒</span>
+          <input type="password" placeholder="Enter your password" required>
+        </div>
+        
+        <button type="submit">Submit</button>
+        <p id="switchText" class="switch-text"></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- JS FILE -->
   <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const studyForm = document.getElementById("studyForm");
+document.getElementById("studyForm").addEventListener("submit", function(e) {
+  e.preventDefault();
 
-      studyForm.addEventListener("submit", function(e) {
-        e.preventDefault();
+  const subject = document.getElementById("subject").value;
+  const hours = document.getElementById("hours").value;
+  const examDate = document.getElementById("examDate").value;
 
-        const subject = document.getElementById("subject").value;
-        const hours = document.getElementById("hours").value;
-        const examDate = document.getElementById("examDate").value;
+  const output = document.getElementById("output");
+  const loading = document.getElementById("loading");
+  const error = document.getElementById("error");
 
-        const output = document.getElementById("output");
-        const loading = document.getElementById("loading");
-        const error = document.getElementById("error");
+  error.classList.add("hidden");
+  output.innerHTML = "";
 
-        // Reset states
-        error.classList.add("hidden");
-        output.innerHTML = "";
+  if (!subject || !hours) {
+    error.textContent = "Please fill in all required fields.";
+    error.classList.remove("hidden");
+    return;
+  }
 
-        // Validation
-        if (!subject || !hours) {
-          error.textContent = "Please fill in all required fields.";
-          error.classList.remove("hidden");
-          return;
-        }
+  loading.classList.remove("hidden");
 
-        // Show loading
-        loading.classList.remove("hidden");
+  setTimeout(() => {
+    loading.classList.add("hidden");
 
-        setTimeout(() => {
-          loading.classList.add("hidden");
+    const topics = {
+      math: ["Algebra", "Geometry", "Trigonometry", "Statistics", "Revision"],
+      english: ["Grammar", "Essay Writing", "Comprehension", "Vocabulary", "Revision"],
+      science: ["Biology", "Chemistry", "Physics", "Experiments", "Revision"]
+    };
 
-          const topics = {
-            math: ["Algebra", "Geometry", "Trigonometry", "Statistics", "Revision"],
-            english: ["Grammar", "Essay Writing", "Comprehension", "Vocabulary", "Revision"],
-            science: ["Biology", "Chemistry", "Physics", "Experiments", "Revision"]
-          };
+    let planHTML = `<h3 class="text-lg font-semibold mb-2">Your 7-Day Study Plan</h3>`;
 
-          let planHTML = `<h3 class="text-lg font-semibold mb-2">Your 7-Day Study Plan</h3>`;
+    for (let i = 0; i < 7; i++) {
+      const topic = topics[subject][i % topics[subject].length];
 
-          for (let i = 0; i < 7; i++) {
-            const topic = topics[subject][i % topics[subject].length];
+      planHTML += `
+        <div class="flex items-center gap-2 p-3 bg-blue-50 rounded shadow-sm">
+          <input type="checkbox" class="accent-blue-600">
+          <span><strong>Day ${i + 1}:</strong> ${topic} (${hours} hrs)</span>
+        </div>
+      `;
+    }
 
-            planHTML += `
-              <div class="flex items-center gap-2 p-3 bg-blue-50 rounded shadow-sm">
-                <input type="checkbox" class="accent-blue-600">
-                <span><strong>Day ${i + 1}:</strong> ${topic} (${hours} hrs)</span>
-              </div>
-            `;
-          }
+    if (examDate) {
+      planHTML += `<p class="mt-3 text-sm text-gray-600"><strong>Exam Date:</strong> ${examDate}</p>`;
+    }
 
-          if (examDate) {
-            planHTML += `<p class="mt-3 text-sm text-gray-600"><strong>Exam Date:</strong> ${examDate}</p>`;
-          }
+    output.innerHTML = planHTML;
 
-          output.innerHTML = planHTML;
-        }, 1200);
-      });
-    });
-  </script>
+  }, 1200);
+});
+</script>
+
 
 </body>
 </html>
